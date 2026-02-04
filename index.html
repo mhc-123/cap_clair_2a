@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cap Clair — Semaine 3 — Rangement intérieur</title>
+  <meta name="description" content="Exercice de rangement intérieur (privé) — Cap Clair Semaine 3" />
+  <style>
+    :root{
+      --vert:#A8C1A1;
+      --bleu-clair:#B8CBD0;
+      --bleu-nuit:#344D59;
+      --beige:#FFFAF3;
+      --azur-grise:#9BB0B8;
+      --terracotta:#D49A89;
+      --marron:#815133;
+
+      --bg: var(--beige);
+      --text: var(--bleu-nuit);
+      --card: #ffffff;
+      --border: rgba(52,77,89,.18);
+      --shadow: 0 10px 30px rgba(52,77,89,.10);
+      --radius: 18px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 10% 0%, rgba(184,203,208,.35), transparent 55%),
+                  radial-gradient(900px 500px at 100% 20%, rgba(168,193,161,.35), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    a{color:inherit}
+    .wrap{
+      max-width: 980px;
+      margin: 28px auto;
+      padding: 0 16px 60px;
+    }
+
+    header{
+      display:flex;
+      gap: 14px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom: 18px;
+    }
+
+    .brand{
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+    }
+    .logo{
+      width:46px;height:46px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--vert), var(--bleu-clair));
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(52,77,89,.10);
+    }
+    h1{
+      font-size: 22px;
+      margin: 0;
+      letter-spacing: .2px;
+    }
+    .subtitle{
+      margin: 6px 0 0;
+      color: rgba(52,77,89,.78);
+      max-width: 58ch;
+      font-size: 14.5px;
+    }
+
+    .top-actions{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    button{
+      border: 1px solid rgba(52,77,89,.18);
+      background: #fff;
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor: pointer;
+      font-weight: 650;
+      letter-spacing: .2px;
+      box-shadow: 0 6px 18px rgba(52,77,89,.08);
+      transition: transform .06s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    button:hover{transform: translateY(-1px); border-color: rgba(52,77,89,.28)}
+    button:active{transform: translateY(0px); box-shadow: 0 3px 10px rgba(52,77,89,.10)}
+
+    .btn-primary{
+      background: linear-gradient(135deg, rgba(168,193,161,.85), rgba(184,203,208,.85));
+      border-color: rgba(52,77,89,.14);
+    }
+    .btn-warn{
+      background: linear-gradient(135deg, rgba(212,154,137,.70), rgba(255,250,243,.9));
+      border-color: rgba(52,77,89,.12);
+    }
+
+    .notice{
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(52,77,89,.14);
+      border-radius: var(--radius);
+      padding: 14px 14px;
+      box-shadow: var(--shadow);
+      margin: 14px 0 18px;
+    }
+    .notice strong{font-weight: 800}
+    .pill-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:10px;
+    }
+    .pill{
+      font-size: 12.5px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(52,77,89,.16);
+      background: rgba(255,255,255,.85);
+      color: rgba(52,77,89,.85);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 16px;
+    }
+    @media (max-width: 920px){
+      .grid{grid-template-columns: 1fr}
+    }
+
+    .card{
+      background: rgba(255,255,255,.88);
+      border: 1px solid rgba(52,77,89,.14);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .section-title{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .section-title h2{
+      margin:0;
+      font-size: 16px;
+      letter-spacing: .2px;
+    }
+    .badge{
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(52,77,89,.16);
+      background: rgba(255,255,255,.9);
+      color: rgba(52,77,89,.78);
+      white-space:nowrap;
+    }
+    .badge.l1{border-color: rgba(168,193,161,.55)}
+    .badge.l2{border-color: rgba(184,203,208,.65)}
+
+    details{
+      border: 1px solid rgba(52,77,89,.14);
+      border-radius: 14px;
+      padding: 10px 12px;
+      background: rgba(255,255,255,.75);
+      margin: 10px 0;
+    }
+    details summary{
+      cursor:pointer;
+      font-weight: 750;
+      list-style:none;
+      outline:none;
+    }
+    details summary::-webkit-details-marker{display:none}
+    .help{
+      color: rgba(52,77,89,.84);
+      font-size: 14px;
+      margin-top: 10px;
+    }
+    .help ul{margin: 8px 0 0 18px}
+    .help li{margin: 6px 0}
+    .confusion{
+      margin-top: 10px;
+      border-left: 4px solid var(--terracotta);
+      padding-left: 10px;
+      color: rgba(52,77,89,.88);
+      background: rgba(212,154,137,.12);
+      border-radius: 10px;
+      padding: 10px 12px;
+    }
+
+    label{
+      display:block;
+      font-weight: 750;
+      margin: 12px 0 8px;
+    }
+    textarea, input[type="text"]{
+      width:100%;
+      border-radius: 14px;
+      border: 1px solid rgba(52,77,89,.18);
+      padding: 12px 12px;
+      background: rgba(255,255,255,.92);
+      color: var(--text);
+      font-size: 14.5px;
+      outline:none;
+      box-shadow: 0 4px 14px rgba(52,77,89,.06);
+    }
+    textarea{min-height: 110px; resize: vertical}
+    textarea:focus, input[type="text"]:focus{border-color: rgba(52,77,89,.32)}
+
+    .small{
+      font-size: 12.5px;
+      color: rgba(52,77,89,.70);
+      margin-top: 8px;
+    }
+
+    .row{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top: 12px;
+    }
+
+    .divider{
+      height:1px;
+      background: rgba(52,77,89,.12);
+      margin: 14px 0;
+    }
+
+    .footer-note{
+      margin-top: 10px;
+      font-size: 13px;
+      color: rgba(52,77,89,.72);
+    }
+
+    /* PRINT / PDF */
+    @media print{
+      body{background:#fff}
+      .wrap{max-width: 100%; margin:0; padding:0}
+      .top-actions, .notice, .small, .row .no-print, details{display:none !important}
+      .card{box-shadow:none; border: 1px solid #ddd; background:#fff}
+      textarea, input[type="text"]{border: 1px solid #ddd; box-shadow:none}
+      header{margin: 0 0 10px}
+      .grid{grid-template-columns: 1fr}
+      .badge{border: 1px solid #ddd}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Cap Clair — Semaine 3 • Rangement intérieur</h1>
+          <p class="subtitle">
+            On range ce qui se mélange (pensées, émotions, croyances, environnement…),
+            puis on affine (intuition vs attentes). Aucun envoi, tout reste sur ton appareil.
+          </p>
+        </div>
+      </div>
+
+      <div class="top-actions">
+        <button class="btn-primary" id="btnPrint" type="button">Télécharger en PDF</button>
+        <button id="btnSaveLocal" type="button" title="Sauvegarde sur TON appareil (localStorage)">Sauvegarder</button>
+        <button id="btnClearLocal" class="btn-warn" type="button" title="Effacer les réponses sauvegardées sur TON appareil">Effacer</button>
+      </div>
+    </header>
+
+    <div class="notice">
+      <strong>Confidentialité :</strong> ce formulaire <strong>n’envoie rien</strong> (pas d’enregistrement sur GitHub, pas de base de données).
+      Si tu cliques sur <strong>Sauvegarder</strong>, ça garde une copie <strong>uniquement sur ton appareil</strong>.
+      <div class="pill-row">
+        <div class="pill">✓ privé</div>
+        <div class="pill">✓ export PDF</div>
+        <div class="pill">✓ deux niveaux</div>
+        <div class="pill">✓ simple & concret</div>
+      </div>
+    </div>
+
+    <div class="grid">
+
+      <!-- LEFT: FORM -->
+      <main class="card" id="formCard">
+        <div class="section-title">
+          <h2>Niveau 1 — Tri principal</h2>
+          <div class="badge l1">On remet de l’ordre</div>
+        </div>
+
+        <p class="small">
+          Règle du jeu : tu ranges, tu n’analyses pas à fond. Tu poses ce qui est là, dans la bonne case.
+        </p>
+
+        <label for="title">Titre (facultatif)</label>
+        <input id="title" type="text" placeholder="Ex : Mon choix pro / Ma relation / Mon projet…" />
+
+        <div class="divider"></div>
+
+        <label for="thoughts">🟦 Pensées (mental)</label>
+        <textarea id="thoughts" placeholder="Ce qui tourne dans ta tête… scénarios, ‘et si’, comparaisons, raisonnements."></textarea>
+
+        <label for="emotions">🟨 Émotions</label>
+        <textarea id="emotions" placeholder="Peur, tristesse, colère, joie, enthousiasme… Ce que tu ressens émotionnellement."></textarea>
+
+        <label for="body">🟩 Ressenti corporel</label>
+        <textarea id="body" placeholder="Tension/détente, ventre noué, souffle court, lourdeur/légèreté…"></textarea>
+
+        <label for="beliefs">🟫 Croyances</label>
+        <textarea id="beliefs" placeholder="‘Je dois…’, ‘Il faut…’, ‘Je ne peux pas…’, ‘Je ne suis pas…’, ‘Ce n’est pas le bon moment…’"></textarea>
+
+        <label for="environment">🟥 Environnement</label>
+        <textarea id="environment" placeholder="Faits concrets : timing, énergie, fatigue, finances, contraintes, responsabilités, contexte…"></textarea>
+
+        <div class="divider"></div>
+
+        <div class="section-title" style="margin-top:4px">
+          <h2>Niveau 2 — Ajustement fin</h2>
+          <div class="badge l2">On clarifie vraiment</div>
+        </div>
+
+        <p class="small">
+          Ici, on évite LA confusion la plus fréquente : <strong>intuition</strong> vs <strong>pression / attentes</strong>.
+        </p>
+
+        <label for="intuition">🟪 Intuition</label>
+        <textarea id="intuition" placeholder="Ce qui est calme, simple, évident… sans avoir besoin de justifier."></textarea>
+
+        <label for="external">🟧 Attentes extérieures / désirs conditionnés</label>
+        <textarea id="external" placeholder="Ce que tu crois devoir vouloir, le regard des autres, les normes, ‘à ma place on ferait…’"></textarea>
+
+        <div class="divider"></div>
+
+        <div class="section-title">
+          <h2>Ce qui se dégage</h2>
+          <div class="badge" style="border-color: rgba(212,154,137,.55)">sans forcer</div>
+        </div>
+
+        <label for="clarity">Qu’est-ce qui devient plus clair, là, maintenant ?</label>
+        <textarea id="clarity" placeholder="Une direction, une évidence, une phrase simple…"></textarea>
+
+        <label for="yesno">À quoi tu dis oui… ou non ?</label>
+        <textarea id="yesno" placeholder="Un vrai oui / un vrai non. Sans pression."></textarea>
+
+        <label for="release">Qu’est-ce que tu n’as plus besoin de porter ?</label>
+        <textarea id="release" placeholder="Ce que tu peux relâcher."></textarea>
+
+        <div class="row">
+          <button class="btn-primary" type="button" id="btnPrint2">Télécharger en PDF</button>
+          <button type="button" id="btnSaveLocal2">Sauvegarder</button>
+          <button class="btn-warn no-print" type="button" id="btnCopy">Copier tout (texte)</button>
+        </div>
+
+        <p class="footer-note">
+          Phrase-clé : <em>La clarté ne vient pas quand tu as toutes les réponses. Elle vient quand chaque chose est à sa place.</em>
+        </p>
+      </main>
+
+      <!-- RIGHT: GUIDE / HELP -->
+      <aside class="card">
+        <div class="section-title">
+          <h2>Aide au classement</h2>
+          <div class="badge">simple & concret</div>
+        </div>
+
+        <details open>
+          <summary>🟦 Pensées (mental)</summary>
+          <div class="help">
+            <div><strong>C’est :</strong> la voix dans la tête (scénarios, calculs, “et si…”)</div>
+            <div><strong>Exemples :</strong></div>
+            <ul>
+              <li>“Et si je regrette ?”</li>
+              <li>“Je devrais attendre d’être sûre.”</li>
+              <li>“Ce n’est pas raisonnable.”</li>
+            </ul>
+            <div class="confusion"><strong>Astuce :</strong> si ça argumente / compare / anticipe → c’est ici.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>🟨 Émotions</summary>
+          <div class="help">
+            <div><strong>C’est :</strong> ce que tu ressens émotionnellement (ça monte, ça descend).</div>
+            <div><strong>Exemples :</strong></div>
+            <ul>
+              <li>Peur, tristesse, colère, joie, enthousiasme…</li>
+              <li>“Ça me fait quelque chose.”</li>
+            </ul>
+            <div class="confusion"><strong>Astuce :</strong> une émotion dit “comment je me sens”, pas “quoi faire”.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>🟩 Ressenti corporel</summary>
+          <div class="help">
+            <div><strong>C’est :</strong> ce que le corps exprime (sans mots).</div>
+            <div><strong>Exemples :</strong></div>
+            <ul>
+              <li>Ventre noué / poitrine serrée</li>
+              <li>Respiration courte / souffle libre</li>
+              <li>Lourdeur / légèreté</li>
+            </ul>
+            <div class="confusion"><strong>Astuce :</strong> si tu peux le localiser dans le corps → c’est ici.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>🟫 Croyances</summary>
+          <div class="help">
+            <div><strong>C’est :</strong> des phrases apprises (souvent automatiques), qui orientent sans prévenir.</div>
+            <div><strong>Exemples :</strong></div>
+            <ul>
+              <li>“Je dois être sûre à 100%.”</li>
+              <li>“Je ne suis pas capable.”</li>
+              <li>“Ce n’est pas le bon moment.”</li>
+            </ul>
+            <div class="confusion"><strong>Astuce :</strong> si ça commence par “je dois / il faut / je ne peux pas” → ici.</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>🟥 Environnement</summary>
+          <div class="help">
+            <div><strong>C’est :</strong> les faits concrets : contraintes, contexte, timing, énergie disponible.</div>
+            <div><strong>Exemples :</strong></div>
+            <ul>
+              <li>Fatigue, charge mentale, finances</li>
+              <li>Responsabilités, délais, contexte pro/perso</li>
+              <li>Ressources disponibles / absentes</li>
+            </ul>
+            <div class="confusion"><strong>Astuce :</strong> si c’est “vérifiable” dans la réalité → c’est ici.</div>
+          </div>
+        </details>
+
+        <details open>
+          <summary>🟪 Intuition</summary>
+          <div class="help">
+            <div><strong>C’est :</strong> calme, simple, sans besoin de prouver.</div>
+            <div><strong>Exemples :</strong></div>
+            <ul>
+              <li>“Je le sens.”</li>
+              <li>“C’est évident, mais j’hésite.”</li>
+              <li>Une clarté silencieuse.</li>
+            </ul>
+            <div class="confusion"><strong>Repère :</strong> si ça apaise → souvent intuition. Si ça presse → pas intuition.</div>
+          </div>
+        </details>
+
+        <details open>
+          <summary>🟧 Attentes extérieures / désirs conditionnés</summary>
+          <div class="help">
+            <div><strong>C’est :</strong> “ce que je crois devoir vouloir” (regard des autres, normes, pression).</div>
+            <div><strong>Exemples :</strong></div>
+            <ul>
+              <li>“Ça se fait.” / “Ce serait plus raisonnable.”</li>
+              <li>“Ils vont penser quoi ?”</li>
+              <li>“À ma place, on ferait…”</li>
+            </ul>
+            <div class="confusion"><strong>Astuce :</strong> si ça implique l’avis des autres → souvent ici.</div>
+          </div>
+        </details>
+
+        <div class="divider"></div>
+        <p class="small">
+          Besoin de te rassurer ? Tu peux écrire une même phrase dans 2 cases si tu hésites,
+          puis la déplacer après coup. Le tri se fait aussi en bougeant les choses.
+        </p>
+      </aside>
+    </div>
+  </div>
+
+  <script>
+    // --- PRIVACY: no network calls, no form submit ---
+    const fields = [
+      "title","thoughts","emotions","body","beliefs","environment","intuition","external",
+      "clarity","yesno","release"
+    ];
+
+    const $ = (id)=>document.getElementById(id);
+
+    function getData(){
+      const data = {};
+      fields.forEach(f => data[f] = ($(f).value || "").trim());
+      data._savedAt = new Date().toISOString();
+      return data;
+    }
+
+    function setData(data){
+      fields.forEach(f => { if($(f)) $(f).value = data?.[f] ?? ""; });
+    }
+
+    function saveLocal(){
+      const data = getData();
+      localStorage.setItem("capclair_s3_rangement", JSON.stringify(data));
+      toast("Sauvegardé sur ton appareil ✅");
+    }
+
+    function loadLocal(){
+      const raw = localStorage.getItem("capclair_s3_rangement");
+      if(!raw) return;
+      try{
+        const data = JSON.parse(raw);
+        setData(data);
+      }catch(e){}
+    }
+
+    function clearLocal(){
+      localStorage.removeItem("capclair_s3_rangement");
+      fields.forEach(f => $(f).value = "");
+      toast("Effacé sur cet appareil 🧹");
+    }
+
+    function downloadPDF(){
+      // Uses the browser print dialog -> user chooses "Save as PDF"
+      window.print();
+    }
+
+    function copyAll(){
+      const data = getData();
+      const lines = [];
+      const labelMap = {
+        title: "Titre",
+        thoughts:"Pensées (mental)",
+        emotions:"Émotions",
+        body:"Ressenti corporel",
+        beliefs:"Croyances",
+        environment:"Environnement",
+        intuition:"Intuition",
+        external:"Attentes extérieures / désirs conditionnés",
+        clarity:"Ce qui devient plus clair",
+        yesno:"Mon oui / mon non",
+        release:"Ce que je relâche"
+      };
+      Object.keys(labelMap).forEach(k=>{
+        lines.push(`— ${labelMap[k]} —\n${(data[k]||"")}\n`);
+      });
+
+      navigator.clipboard.writeText(lines.join("\n"))
+        .then(()=>toast("Copié ✅"))
+        .catch(()=>toast("Impossible de copier (navigateur)"));
+    }
+
+    // Tiny toast
+    let toastTimer = null;
+    function toast(msg){
+      let el = document.getElementById("toast");
+      if(!el){
+        el = document.createElement("div");
+        el.id = "toast";
+        el.style.position = "fixed";
+        el.style.left = "50%";
+        el.style.bottom = "18px";
+        el.style.transform = "translateX(-50%)";
+        el.style.padding = "10px 12px";
+        el.style.borderRadius = "14px";
+        el.style.background = "rgba(52,77,89,.92)";
+        el.style.color = "#FFFAF3";
+        el.style.fontWeight = "700";
+        el.style.boxShadow = "0 10px 25px rgba(0,0,0,.20)";
+        el.style.zIndex = "9999";
+        el.style.maxWidth = "92vw";
+        el.style.textAlign = "center";
+        document.body.appendChild(el);
+      }
+      el.textContent = msg;
+      el.style.opacity = "1";
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(()=>{ el.style.opacity = "0"; }, 1600);
+    }
+
+    // Autosave (optional) — stays local only
+    let autosaveTimer = null;
+    function scheduleAutosave(){
+      clearTimeout(autosaveTimer);
+      autosaveTimer = setTimeout(()=> {
+        const data = getData();
+        localStorage.setItem("capclair_s3_rangement_autosave", JSON.stringify(data));
+      }, 800);
+    }
+
+    // Wire up
+    document.addEventListener("DOMContentLoaded", ()=>{
+      // Load explicit save first, else autosave fallback
+      const saved = localStorage.getItem("capclair_s3_rangement");
+      const auto = localStorage.getItem("capclair_s3_rangement_autosave");
+      if(saved){ try{ setData(JSON.parse(saved)); }catch(e){} }
+      else if(auto){ try{ setData(JSON.parse(auto)); }catch(e){} }
+
+      // Autosave on input (private, local)
+      fields.forEach(f=>{
+        const el = $(f);
+        el.addEventListener("input", scheduleAutosave);
+      });
+
+      $("btnPrint").addEventListener("click", downloadPDF);
+      $("btnPrint2").addEventListener("click", downloadPDF);
+      $("btnSaveLocal").addEventListener("click", saveLocal);
+      $("btnSaveLocal2").addEventListener("click", saveLocal);
+      $("btnClearLocal").addEventListener("click", clearLocal);
+      $("btnCopy").addEventListener("click", copyAll);
+    });
+  </script>
+</body>
+</html>
